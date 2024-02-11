@@ -1,0 +1,158 @@
+<div class="card">
+  <p-table [tableStyle]="{'min-width': '60rem'}" [value]="userstable">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Enseignants
+        <a (click)="getUser()" class="btn btn-primary btn-sm float-end mb-2" pTooltip="Refresh" tooltipPosition="left">
+
+          <svg class="lucide lucide-refresh-ccw" fill="none" height="16" stroke="currentColor" stroke-linecap="round"
+               stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="16"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+            <path d="M16 16h5v5" />
+          </svg>
+        </a>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Telephone</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template let-user pTemplate="body">
+      <tr>
+
+        <td>{{ user.nom }}</td>
+        <td>{{ user.prenom }}</td>
+        <td>{{ user.telephone }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <p-tag [severity]="getrole(user.role)" [value]="user.role"></p-tag>
+        </td>
+        <td>
+          <a (click)="showDialoginfo(user.id)" class="mx-2" pTooltip="view" tooltipPosition="top">
+            <svg class="lucide lucide-eye" fill="none" height="30" stroke="currentColor" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="30"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </a>
+          <a (click)="showDialogtoedit(user.id)" [hidden]=getstatus(user.role) class="mx-2 float-end" pTooltip="Edit"
+             tooltipPosition="top">
+            <svg class="lucide lucide-pen" fill="none" height="30" stroke="orange" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="30"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+            </svg>
+          </a>
+          <a (click)="confirm(user.id)" class="mx-2" pTooltip="Trash" tooltipPosition="top">
+            <svg class="lucide lucide-trash-2" fill="none" height="30" stroke="red" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="30"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 6h18" />
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+              <line x1="10" x2="10" y1="11" y2="17" />
+              <line x1="14" x2="14" y1="11" y2="17" />
+            </svg>
+          </a>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ userstable ? userstable.length : 0 }} users.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="infovisible" [position]="position" [style]="{ width: '50vw' }" header=" User Info">
+
+  <div *ngIf="user">
+    <p>Nom: {{ user.nom }}</p>
+    <p>Prénom: {{ user.prenom }}</p>
+    <p>Telephone: {{ user.telephone }}</p>
+    <p> Matricule : {{ user.numeromatricule }}</p>
+    <p>Username : {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Role: {{ user.role }}</p>
+  </div>
+
+</p-dialog>
+
+<p-dialog [(visible)]="editvisible" *ngIf="user">
+  <ng-template pTemplate="headless">
+    <div class="p-5 flex justify-content-between align-items-center"
+         style="border-radius: 12px; background-image: radial-gradient(circle at left top, var(--primary-400), var(--primary-700))">
+      <div class="mb-5">
+        <h1 class="text-center text-white-50">
+          <i class="ri-account-circle-line"></i>
+        </h1>
+        <h5 class="text-white text-center">Edit User</h5>
+      </div>
+
+      <form (ngSubmit)="submitForm(user.id)" [formGroup]="monFormulaire">
+
+
+        <div class="flex flex-column gap-5">
+          <span class=" mb-4 p-float-label">
+            <input id="nom" pInputText formControlName="nom" />
+            <label for="nom">Nom</label>
+          </span>
+          <span class=" mb-4 p-float-label">
+            <input id="prenom" pInputText formControlName="prenom" />
+            <label for="prenom">Prenom</label>
+          </span>
+          <span class=" mb-4 p-float-label">
+            <input id="matricule" pInputText formControlName="numeromatricule" />
+            <label for="matricule">Matricule</label>
+          </span>
+          <span class=" mb-4 p-float-label">
+
+            <p-inputNumber inputId="integeronly" formControlName="telephone"> </p-inputNumber>
+            <label for="integeronly">Telephone</label>
+          </span>
+
+          <span class=" mb-4 p-float-label">
+            <input id="email" pInputText formControlName="email" />
+            <label for="email">Email</label>
+          </span>
+          <span class=" mb-4 p-float-label">
+
+            <p-dropdown formControlName="role" [options]="optionsDeChoix" optionLabel="role" [showClear]="true" [style]="{ width: '100%'}"
+                        placeholder="Select a Role"></p-dropdown>
+          </span>
+        </div>
+
+        <div class="flex align-items-center gap-2">
+          <button  class="btn btn-outline-info float-start"
+                  type="submit">Submit</button>
+          <p-button (click)="closeDialog()" [text]="true" class="w-full float-end" label="Cancel"
+                    styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"></p-button>
+        </div>
+      </form>
+
+
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-toast></p-toast>
+<p-confirmDialog>
+  <ng-template let-message pTemplate="message">
+    <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+      <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+      <p>{{ message.message }}</p>
+    </div>
+
+  </ng-template>
+</p-confirmDialog>
