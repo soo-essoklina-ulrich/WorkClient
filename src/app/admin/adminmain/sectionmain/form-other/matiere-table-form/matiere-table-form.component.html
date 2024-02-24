@@ -1,1 +1,146 @@
-<p>matiere-table-form works!</p>
+<div class="card-body">
+  <div class="card mb-0">
+    <div class="card-body p-4">
+
+      <form (ngSubmit)="submitFormCreate()" [formGroup]="form">
+
+        <fieldset class="mb-3">
+          <legend class="text-primary-500 text-uppercase text-2xl">Matiere</legend>
+
+          <div class="row gx-lg-5">
+
+            <div class="col">
+            <span class="p-float-label">
+                  <input formControlName="code" id="code" pInputText/>
+                  <label for="code">Code</label>
+            </span>
+            </div>
+
+            <div class="col">
+            <span class="p-float-label">
+                  <input formControlName="intitule" id="intitulet" pInputText/>
+                  <label for="intitulet">Intitule</label>
+            </span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <button [disabled]="form.invalid" class="btn btn-outline-info float-start"
+                type="submit">Submit
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="card w-100 h-auto ">
+
+  <p-table [tableStyle]="{'min-width': '60rem'}" [value]="table">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Matiere
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>N*</th>
+        <th>Code</th>
+        <th>Intitule</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template let-index="rowIndex" let-table pTemplate="body">
+      <tr>
+        <td>{{ index + 1 }}</td>
+        <td>{{ table.code | uppercase }}</td>
+        <td>{{ table.intitule  }}</td>
+        <td>
+
+          <a (click)="showDialogtoedit(table.id)" class="mx-2 float-start" pTooltip="Edit"
+             tooltipPosition="top">
+            <svg class="lucide lucide-pen" fill="none" height="30" stroke="orange" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="30"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+            </svg>
+          </a>
+          <a (click)="confirm(table.id)" class="mx-2 float-end" pTooltip="Trash" tooltipPosition="top">
+            <svg class="lucide lucide-trash-2" fill="none" height="30" stroke="red" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="30"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 6h18"/>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+              <line x1="10" x2="10" y1="11" y2="17"/>
+              <line x1="14" x2="14" y1="11" y2="17"/>
+            </svg>
+          </a>
+        </td>
+      </tr>
+
+
+    </ng-template>
+    <ng-template pTemplate="summary">
+
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ table ? table.length : 0 }} Matiere.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+
+
+<!-- formualaire--->
+<p-dialog *ngIf="data" [(visible)]="editvisible">
+  <ng-template pTemplate="headless">
+    <div class="p-5 flex justify-content-between align-items-center"
+         style="border-radius: 12px; background-image: radial-gradient(circle at left top, var(--primary-400), var(--primary-700))">
+      <div class="mb-5">
+        <h1 class="text-center text-white-50">
+          <i class="ri-account-circle-line"></i>
+        </h1>
+        <h5 class="text-white text-center">Edit Matiere</h5>
+      </div>
+
+      <form (ngSubmit)="submitFormUpdate(data.id)" [formGroup]="formupate">
+
+
+        <div class="flex flex-column gap-5">
+          <span class=" mb-4 p-float-label">
+            <input [placeholder]="data.code" formControlName="code" id="nom" pInputText/>
+            <label for="nom">Code</label>
+          </span>
+          <span class=" mb-4 p-float-label">
+            <input formControlName="intitule" id="intitule" pInputText />
+            <label for="intitule">Intitule</label>
+          </span>
+
+        </div>
+
+        <button [disabled]="formupate.invalid" class="btn btn-outline-info float-start"
+                type="submit">Submit
+        </button>
+        <p-button (click)="closeDialog()" [text]="true" class="w-full float-end" label="Cancel"
+                  styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"></p-button>
+      </form>
+
+
+    </div>
+  </ng-template>
+</p-dialog>
+<!--end formulaire-->
+
+<!--start toast for confirme delete-->
+<p-toast></p-toast>
+<p-confirmDialog>
+  <ng-template let-message pTemplate="message">
+    <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+      <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+      <p>{{ message.message }}</p>
+    </div>
+
+  </ng-template>
+</p-confirmDialog><!--end -->

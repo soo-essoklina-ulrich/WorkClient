@@ -93,4 +93,6 @@ export class UserDetails {
   set role(value: string) {
     this._role = value;
   }
+
+
 }

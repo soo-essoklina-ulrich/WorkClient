@@ -5,18 +5,18 @@ import {Anscolaire} from "../annee/anscolaire";
 
 export class Cours {
   private _id: number;
-  private _matiere: Matiere;
+  private _matieres: Matiere;
   private _enseigant: Enseignant;
   private _classe: Classe;
-  private _anneeScolaire: Anscolaire;
+  private _anneescolaire: Anscolaire;
 
 
   constructor(id: number, matiere: Matiere, enseigant: Enseignant, classe: Classe, anneeScolaire: Anscolaire) {
     this._id = id;
-    this._matiere = matiere;
+    this._matieres = matiere;
     this._enseigant = enseigant;
     this._classe = classe;
-    this._anneeScolaire = anneeScolaire;
+    this._anneescolaire = anneeScolaire;
   }
 
 
@@ -29,11 +29,11 @@ export class Cours {
   }
 
   get matiere(): Matiere {
-    return this._matiere;
+    return this._matieres;
   }
 
   set matiere(value: Matiere) {
-    this._matiere = value;
+    this._matieres = value;
   }
 
   get enseigant(): Enseignant {
@@ -53,10 +53,10 @@ export class Cours {
   }
 
   get anneeScolaire(): Anscolaire {
-    return this._anneeScolaire;
+    return this._anneescolaire;
   }
 
   set anneeScolaire(value: Anscolaire) {
-    this._anneeScolaire = value;
+    this._anneescolaire = value;
   }
 }

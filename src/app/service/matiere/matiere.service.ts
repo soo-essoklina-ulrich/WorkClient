@@ -12,8 +12,8 @@ export class MatiereService {
     private http: HttpClient
   ) { }
 
-  public listMatiere():Observable<Matiere>{
-    return this.http.get<Matiere>(`${this.matiereUrl}/list`);
+  public listMatiere():Observable<Matiere[]>{
+    return this.http.get<Matiere[]>(`${this.matiereUrl}/list`);
   }
 
   public addMatiere(matiere:Matiere):Observable<Matiere>{

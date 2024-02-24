@@ -44,4 +44,8 @@ export class Anscolaire {
   set dateFin(value: Date) {
     this._dateFin = value;
   }
+
+  toString():string{
+    return this.code
+  }
 }

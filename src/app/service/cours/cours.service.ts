@@ -12,8 +12,8 @@ export class CoursService {
     private http: HttpClient
   ) { }
 
-  public listCours():Observable<Cours>{
-    return this.http.get<Cours>(`${this.coursUrl}/list`);
+  public listCours():Observable<Cours[]>{
+    return this.http.get<Cours[]>(`${this.coursUrl}/list`);
   }
 
   public addCours(cours:Cours):Observable<Cours>{

@@ -12,8 +12,8 @@ export class EmploietpsService {
     private http: HttpClient
   ) { }
 
-  public listEmploietemps():Observable<Emploietps>{
-      return this.http.get<Emploietps>(`${this.emploietempsUrl}/list`);
+  public listEmploietemps():Observable<Emploietps[]>{
+      return this.http.get<Emploietps[]>(`${this.emploietempsUrl}/list`);
   }
 
   public addEmploietemps(emploietps:Emploietps):Observable<Emploietps>{

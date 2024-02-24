@@ -74,20 +74,80 @@ export class FormulaireService {
     return this.fb.group({
       id:         [''],
       code:       ['', Validators.required],
-      niveau:     ['', Validators.required],
-      serie:      ['', Validators.required],
-      option:     ['', Validators.required],
-      anneeScolaire: ['']
+      intitule:     ['', Validators.required],
+
     })
   }
 
   buildFormClasseUpdate(){
     return this.fb.group({
       code:       [''],
-      niveau:     [''],
-      serie:      [''],
-      option:     [''],
-      anneeScolaire: ['']
+      intitule:     [''],
+
+    })
+  }
+
+
+  //form for matiere
+  buildFormMatiereCreate(){
+    return this.fb.group({
+      id:         [''],
+      code:       ['', Validators.required],
+      intitule:     ['', Validators.required],
+
+    })
+  }
+
+  buildFormMatiereUpdate(){
+    return this.fb.group({
+      code:       [''],
+      intitule:     [''],
+
+    })
+  }
+
+  //form for cours
+  buildFormCoursCreate(){
+    return this.fb.group({
+      id:         [''],
+      matieres:    ['', Validators.required],
+      enseignant:  ['', Validators.required],
+      classe:     ['', Validators.required],
+      anneescolaire: ['', Validators.required]
+
+    })
+  }
+
+  buildFormCoursUpdate(){
+    return this.fb.group({
+      matieres:    [''],
+      enseignant:  [''],
+      classe:     [''],
+      anneescolaire: ['']
+
+    })
+  }
+
+  //form for emplois du temps
+
+  buildFormEmploisCreate(){
+    return this.fb.group({
+      id:              [''],
+      enseignant:      ['', Validators.required],
+      cours:           ['', Validators.required],
+      heureDebut:      ['', Validators.required],
+      heureFin:        ['', Validators.required]
+
+    })
+  }
+
+  buildFormEmploisUpdate(){
+    return this.fb.group({
+      enseignant:      [''],
+      cours:           [''],
+      heureDebut:      [''],
+      heureFin:        ['']
+
     })
   }
 

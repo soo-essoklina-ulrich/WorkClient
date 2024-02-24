@@ -66,7 +66,19 @@ export class AnneeTableFormComponent implements OnInit{
       accept: () => {
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
         this.table.splice(this.table.findIndex(an => an.id == id), 1);
-      },
+        try {
+          this.anneeservice.deleteAnneeScolaire(id).subscribe(
+            (response)=>{
+              console.log(response)
+            },
+            (error)=>{
+              console.log(error)
+            }
+          );
+        }
+        catch (e) {
+          console.log(e);
+        }},
       reject: () => {
         this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
       }
@@ -97,9 +109,10 @@ export class AnneeTableFormComponent implements OnInit{
     if (anneeindex != -1) {
       this.formupate.value.code? this.table[anneeindex].code = this.formupate.value.code : null;
       this.formupate.value.dateDebut? this.table[anneeindex].dateDebut = this.formupate.value.dateDebut : null;
-      this.formupate.value.dateFin? this.table[anneeindex].dateFin = this.formupate.value.dateFin : null;
+      this.formupate.value.dateFin? this.table[anneeindex].dateFin = this.formupate.value.dateFin: null;
+
       try {
-        this.anneeservice.updateAnneeScolaire(id, this.formupate.value).subscribe(
+        this.anneeservice.updateAnneeScolaire(id, this.table[anneeindex]).subscribe(
           (response)=>{
             console.log(response)
           },
@@ -110,17 +123,11 @@ export class AnneeTableFormComponent implements OnInit{
       }catch (e) {
         console.log(e)
       }
+
+
     }
-    this.formupate.reset();
 
-
-   /* this.anneeservice.updateAnneeScolaire(id, this.formupate.value).subscribe(
-      (response)=>{
-      //this.table.splice(this.table.findIndex(an => an.id == id), 1, response)
-    },
-      (error)=>{
-      console.log(error)
-    })*/
+    this.closeDialog();
 
   }
 

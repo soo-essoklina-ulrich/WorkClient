@@ -12,8 +12,8 @@ export class ClasseService {
     private http: HttpClient
   ) { }
 
-  public listClasse():Observable<Classe>{
-    return this.http.get<Classe>(`${this.classeUrl}/list`);
+  public listClasse():Observable<Classe[]>{
+    return this.http.get<Classe[]>(`${this.classeUrl}/list`);
   }
 
   public addClasse(classe:Classe):Observable<Classe>{

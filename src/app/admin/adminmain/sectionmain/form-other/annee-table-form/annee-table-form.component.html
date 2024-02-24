@@ -4,6 +4,9 @@
 
       <form (ngSubmit)="submitFormCreate()" [formGroup]="form">
 
+        <fieldset class="mb-3">
+          <legend class="text-primary-500">Annee Scolaire</legend>
+
         <div class="row gx-5">
 
           <div class="col">
@@ -32,7 +35,7 @@
           </div>
 
         </div>
-
+        </fieldset>
 
         <button [disabled]="form.invalid" class="btn btn-outline-info float-start"
                 type="submit">Submit
@@ -96,7 +99,7 @@
     <ng-template pTemplate="summary">
 
       <div class="flex align-items-center justify-content-between">
-        In total there are {{ table ? table.length : 0 }} users.
+        In total there are {{ table ? table.length : 0 }} Annee.
       </div>
     </ng-template>
   </p-table>
@@ -113,7 +116,7 @@
         <h1 class="text-center text-white-50">
           <i class="ri-account-circle-line"></i>
         </h1>
-        <h5 class="text-white text-center">Edit User</h5>
+        <h5 class="text-white text-center">Edit An-Sc</h5>
       </div>
 
       <form (ngSubmit)="submitFormUpdate(An.id)" [formGroup]="formupate">
@@ -121,15 +124,17 @@
 
         <div class="flex flex-column gap-5">
           <span class=" mb-4 p-float-label">
-            <input [placeholder]="An.code" formControlName="code" id="nom" pInputText/>
+            <input value="{{An.code}}" placeholder="{{An.code}}" formControlName="code" id="nom" pInputText/>
             <label for="nom">Code</label>
           </span>
           <span class=" mb-4 p-float-label">
-            <p-calendar [showTime]="true" formControlName="dateDebut" id="debut"></p-calendar>
+            <input  [value]="An.dateDebut" [placeholder]="An.dateDebut" formControlName="dateDebut" id="debut" type="datetime-local" class="form-control" >
+
             <label for="debut">Debut</label>
           </span>
           <span class=" mb-4 p-float-label">
-            <p-calendar [showTime]="true" formControlName="dateFin" id="fin"></p-calendar>
+            <input [value]="An.dateFin" [placeholder]="An.dateFin" formControlName="dateFin" id="fin" type="datetime-local" class="form-control" >
+
             <label for="fin">Fin</label>
           </span>
         </div>
