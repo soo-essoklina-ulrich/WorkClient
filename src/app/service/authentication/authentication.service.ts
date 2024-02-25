@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class AuthenticationService {
 
   public buildFormLogin() {
     return this.fb.group({
-      username: [''],
-      password: ['']
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 }
