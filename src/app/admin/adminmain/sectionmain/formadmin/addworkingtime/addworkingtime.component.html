@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Add Working Time</h5>
+
+    <form class="row g-3" (ngSubmit)="onSubmit()" [formGroup]="form" >
+      <div class="col-md-3">
+        <p-dropdown formControlName="cours" [options]="cours"  optionLabel="{{cours}} "
+                      [style]="{width: 100 }"></p-dropdown>
+      </div>
+
+
+
+      <div class="col-md-3">
+        <input class="form-control" placeholder="Username" type="datetime-local" formControlName="heureDebut">
+      </div>
+
+      <div class="col-md-3">
+        <input class="form-control" placeholder="Username" type="datetime-local" formControlName="heureFin">
+      </div>
+      <button [disabled]="form.invalid" class="btn btn-outline-success float-start"
+              type="submit">Submit
+      </button>
+
+
+    </form>
+  </div>
+</div>

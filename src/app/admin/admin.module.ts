@@ -36,6 +36,8 @@ import { ClasseTableFormComponent } from './adminmain/sectionmain/form-other/cla
 import { CoursTableFormComponent } from './adminmain/sectionmain/form-other/cours-table-form/cours-table-form.component';
 import { MatiereTableFormComponent } from './adminmain/sectionmain/form-other/matiere-table-form/matiere-table-form.component';
 import { CalendarModule } from 'primeng/calendar';
+import { AddpeopleComponent } from './adminmain/sectionmain/formadmin/addpeople/addpeople.component';
+import { AddworkingtimeComponent } from './adminmain/sectionmain/formadmin/addworkingtime/addworkingtime.component';
 
 
 
@@ -60,7 +62,9 @@ import { CalendarModule } from 'primeng/calendar';
     AnneeTableFormComponent,
     ClasseTableFormComponent,
     CoursTableFormComponent,
-    MatiereTableFormComponent
+    MatiereTableFormComponent,
+    AddpeopleComponent,
+    AddworkingtimeComponent
   ],
     imports: [
         CommonModule,

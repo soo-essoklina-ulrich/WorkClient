@@ -89,6 +89,7 @@ export class AnneeTableFormComponent implements OnInit{
 
     this.getuserinfobyid(id);
     this.editvisible = true;
+    console.log(this.An)
   }
 
   submitFormCreate() {

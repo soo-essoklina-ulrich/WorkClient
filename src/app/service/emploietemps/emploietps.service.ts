@@ -7,13 +7,13 @@ import {Emploietps} from "../../models/emploietemps/emploietps";
   providedIn: 'root'
 })
 export class EmploietpsService {
-  private emploietempsUrl:string = "http://localhost:8081/timeapiv1/emploietemps";
+  private emploietempsUrl:string = "http://localhost:8081/timeapiv1/emploie";
   constructor(
     private http: HttpClient
   ) { }
 
   public listEmploietemps():Observable<Emploietps[]>{
-      return this.http.get<Emploietps[]>(`${this.emploietempsUrl}/list`);
+      return this.http.get<Emploietps[]>(`${this.emploietempsUrl}/all`);
   }
 
   public addEmploietemps(emploietps:Emploietps):Observable<Emploietps>{

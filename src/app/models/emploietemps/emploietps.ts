@@ -3,15 +3,15 @@ import {Cours} from "../cours/cours";
 
 export class Emploietps {
   private _id : number;
-  private _enseignant : Enseignant;
+
   private _cours: Cours;
   private _heuredebut: Date;
   private _heurefin: Date;
 
 
-  constructor(id: number, enseignant: Enseignant, cours: Cours, heuredebut: Date, heurefin: Date) {
+  constructor(id: number,  cours: Cours, heuredebut: Date, heurefin: Date) {
     this._id = id;
-    this._enseignant = enseignant;
+
     this._cours = cours;
     this._heuredebut = heuredebut;
     this._heurefin = heurefin;
@@ -26,13 +26,6 @@ export class Emploietps {
     this._id = value;
   }
 
-  get enseignant(): Enseignant {
-    return this._enseignant;
-  }
-
-  set enseignant(value: Enseignant) {
-    this._enseignant = value;
-  }
 
   get cours(): Cours {
     return this._cours;

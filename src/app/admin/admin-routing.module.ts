@@ -18,6 +18,8 @@ import {CoursTableFormComponent} from "./adminmain/sectionmain/form-other/cours-
 import {
   MatiereTableFormComponent
 } from "./adminmain/sectionmain/form-other/matiere-table-form/matiere-table-form.component";
+import {AddpeopleComponent} from "./adminmain/sectionmain/formadmin/addpeople/addpeople.component";
+import {AddworkingtimeComponent} from "./adminmain/sectionmain/formadmin/addworkingtime/addworkingtime.component";
 
 
 const routes: Routes = [
@@ -33,7 +35,13 @@ const routes: Routes = [
         {path: 'et', component: ETudeTableComponent},
         {path: 'en', component: EnsTableComponent}
       ]},
-      {path: 'formP', component: FormadminComponent},
+      {path: 'form', component: FormadminComponent,
+        children: [
+          { path: '',  redirectTo: 'people', pathMatch: 'full' },
+          {path: 'people', component: AddpeopleComponent},
+          {path: 'work', component: AddworkingtimeComponent},
+        ]
+      },
       {path: 'formO', component: FormOtherComponent,
         children: [
           { path: '',  redirectTo: 'all', pathMatch: 'full' },

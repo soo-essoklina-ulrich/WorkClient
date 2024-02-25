@@ -133,7 +133,6 @@ export class FormulaireService {
   buildFormEmploisCreate(){
     return this.fb.group({
       id:              [''],
-      enseignant:      ['', Validators.required],
       cours:           ['', Validators.required],
       heureDebut:      ['', Validators.required],
       heureFin:        ['', Validators.required]
@@ -143,7 +142,7 @@ export class FormulaireService {
 
   buildFormEmploisUpdate(){
     return this.fb.group({
-      enseignant:      [''],
+
       cours:           [''],
       heureDebut:      [''],
       heureFin:        ['']

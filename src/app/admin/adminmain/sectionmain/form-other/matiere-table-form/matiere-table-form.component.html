@@ -110,11 +110,11 @@
 
         <div class="flex flex-column gap-5">
           <span class=" mb-4 p-float-label">
-            <input [placeholder]="data.code" formControlName="code" id="nom" pInputText/>
+            <input [placeholder]="data.code" [defaultValue]="data.code" formControlName="code" id="nom" pInputText/>
             <label for="nom">Code</label>
           </span>
           <span class=" mb-4 p-float-label">
-            <input formControlName="intitule" id="intitule" pInputText />
+            <input [placeholder]="data.intitule" formControlName="intitule" id="intitule" pInputText />
             <label for="intitule">Intitule</label>
           </span>
 

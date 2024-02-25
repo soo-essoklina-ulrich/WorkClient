@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Add People <i class="pi pi-users" style="font-size: 1.5rem ; color: #222F3E"></i></h5>
+
+    <!-- No Labels Form -->
+    <form class="row g-3" (ngSubmit)="onSubmit()" [formGroup]="form" >
+      <div class="col-md-3">
+        <input class="form-control" placeholder="Votre Nom" type="text" formControlName="nom">
+      </div>
+      <div class="col-md-3">
+        <input class="form-control" placeholder="Votre Prenom" type="text" formControlName="prenom">
+      </div>
+
+      <div class="col-md-6">
+        <input class="form-control" placeholder="Email" type="email" formControlName="email">
+      </div>
+
+      <div class="col-md-6">
+        <input class="form-control" placeholder="Username" type="text" formControlName="username">
+      </div>
+      <div class="col-md-6">
+        <input class="form-control" placeholder="Password" type="password" formControlName="password">
+      </div>
+      <div class="col-md-6">
+        <input class="form-control" placeholder="Tel ." type="number" formControlName="telephone">
+      </div>
+      <div class="col-md-6">
+        <input class="form-control" placeholder="Matricule" type="text" formControlName="numeromatricule" >
+      </div>
+
+
+
+
+
+      <fieldset class="p-2 ">
+        <legend class="col-form-label my-2">Roles</legend>
+        <div class="row mt-3 mx-2">
+          <div class="form-check col-md-2">
+            <input checked class="form-check-input" id="gridRadios1"  type="radio" value="ETUDIANT" formControlName="role">
+            <label class="form-check-label" for="gridRadios1">
+              Etudiant
+            </label>
+          </div>
+          <div class="form-check col-md-2">
+            <input class="form-check-input" id="gridRadios2"  type="radio" value="ENSEIGNANT" formControlName="role">
+            <label class="form-check-label" for="gridRadios2">
+              Enseignant
+            </label>
+          </div>
+          <div class="form-check col-md-2">
+            <input class="form-check-input"  id="gridRadios3" type="radio" value="ADMIN" formControlName="role">
+            <label class="form-check-label" for="gridRadios3">
+              Admin
+            </label>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <div class="text-center">
+        <button class="btn btn-primary mx-2" type="submit" [disabled]="form.invalid">Submit</button>
+        <button class="btn btn-secondary mx-2" type="reset">Reset</button>
+      </div>
+    </form><!-- End No Labels Form -->
+
+  </div>
+</div>

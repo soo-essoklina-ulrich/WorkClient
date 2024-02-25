@@ -1,51 +1,26 @@
 <div class="card-body">
   <div class="card mb-0">
     <div class="card-body p-4">
-
-      <!--<form (ngSubmit)="submitFormCreate()" [formGroup]="form">
-
-        <fieldset class="mb-3">
-          <legend class="text-primary-500 text-uppercase text-2xl">Cours</legend>
-
-          <div class="row gx-lg-5">
-
-            <div class="col">
-            <span class="p-float-label">
-                  <input formControlName="code" id="code" pInputText/>
-                  <label for="code">Code</label>
-            </span>
-            </div>
-
-            <div class="col">
-            <span class="p-float-label">
-                  <input formControlName="intitule" id="intitulet" pInputText/>
-                  <label for="intitulet">Intitule</label>
-            </span>
-            </div>
-
-          </div>
-        </fieldset>
-
-        <button [disabled]="form.invalid" class="btn btn-outline-info float-start"
-                type="submit">Submit
-        </button>
-      </form>-->
-      <form class="row g-3" (ngSubmit)="submitFormCreate()" [formGroup]="form" >
+      <form class="row g-3" (ngSubmit)="submitFormCreate()" [formGroup]="form">
 
 
         <legend class="text-primary-500 text-uppercase text-2xl">Cours</legend>
 
         <div class="col-md-6">
-          <p-dropdown formControlName="enseignant" [options]="Enseignants"  optionLabel="nom" [showClear]="true" placeholder="Select a Enseignant" [style]="{width: 100}" ></p-dropdown>
+          <p-dropdown formControlName="enseignant" [options]="Enseignants" optionLabel="nom" [showClear]="true"
+                      placeholder="Select a Enseignant" [style]="{width: 100}"></p-dropdown>
         </div>
         <div class="col-md-6">
-          <p-dropdown formControlName="matieres" [options]="Matieres"  optionLabel="code" [showClear]="true" placeholder="Select a Matiere"></p-dropdown>
+          <p-dropdown formControlName="matieres" [options]="Matieres" optionLabel="code" [showClear]="true"
+                      placeholder="Select a Matiere" [style]="{width: 100}"></p-dropdown>
         </div>
         <div class="col-md-6">
-          <p-dropdown formControlName="classe" [options]="Classes"  optionLabel="code" [showClear]="true" placeholder="Select a Classe"></p-dropdown>
+          <p-dropdown formControlName="classe" [options]="Classes" optionLabel="code" [showClear]="true"
+                      placeholder="Select a Classe" [style]="{width: 100}"></p-dropdown>
         </div>
         <div class="col-md-6">
-          <p-dropdown formControlName="anneescolaire" [options]="Anneescolaire"  optionLabel="code" [showClear]="true" placeholder="Select a Anne-Sc"></p-dropdown>
+          <p-dropdown formControlName="anneescolaire" [options]="Anneescolaire" optionLabel="code" [showClear]="true"
+                      placeholder="Select a Anne-Sc" [style]="{width: 100}"></p-dropdown>
         </div>
 
         <div class="text-center">
@@ -79,9 +54,9 @@
     <ng-template let-index="rowIndex" let-table pTemplate="body">
       <tr>
         <td>{{ index + 1 }}</td>
-        <td>{{ table.enseigant? table.enseigant._nom: '-' }}</td>
-        <td>{{ table.matiere ? table.matiere.intitule : '-'   }}</td>
-        <td>{{ table.classe.intitule  }}</td>
+        <td>{{ table.enseigant ? table.enseigant._nom : '-' }}</td>
+        <td>{{ table.matiere ? table.matiere.intitule : '-' }}</td>
+        <td>{{ table.classe.intitule }}</td>
         <td>{{ table.anneeScolaire }}</td>
         <td>
 
@@ -119,7 +94,6 @@
 </div>
 
 
-
 <!-- formualaire--->
 <p-dialog *ngIf="data" [(visible)]="editvisible">
   <ng-template pTemplate="headless">
@@ -129,20 +103,32 @@
         <h1 class="text-center text-white-50">
           <i class="ri-account-circle-line"></i>
         </h1>
-        <h5 class="text-white text-center">Edit Cour</h5>
+        <h5 class="text-white text-center">Edit Cour with EN </h5>
       </div>
 
-      <!--<form (ngSubmit)="submitFormUpdate(data.id)" [formGroup]="formupate">
+      <form (ngSubmit)="submitFormUpdate(data.id)" [formGroup]="formupate">
 
 
         <div class="flex flex-column gap-5">
           <span class=" mb-4 p-float-label">
-            <input [placeholder]="data.matiere" formControlName="matiere" id="nom" pInputText/>
-            <label for="nom">Code</label>
+            <p-dropdown formControlName="enseignant" [options]="Enseignants" id="enseignant" optionLabel="nom"
+                        [showClear]="true" placeholder="{{data.enseigant}}" [style]="{width: 100 }"></p-dropdown>
+            <label for="enseignant">Enseigant</label>
           </span>
           <span class=" mb-4 p-float-label">
-            <input formControlName="intitule" id="intitule" pInputText />
-            <label for="intitule">Intitule</label>
+             <p-dropdown id="classe" formControlName="matieres" [options]="Matieres" optionLabel="code" [showClear]="true"
+                         [style]="{width: 100}"></p-dropdown>
+            <label for="classe">Matiere</label>
+          </span>
+          <span class=" mb-4 p-float-label">
+            <p-dropdown id="matiere" formControlName="classe" [options]="Classes" optionLabel="code" [showClear]="true"
+                         [style]="{width: 100}"></p-dropdown>
+            <label for="matiere">Classe</label>
+          </span>
+          <span class=" mb-4 p-float-label">
+            <p-dropdown id="ansc" formControlName="anneescolaire" [options]="Anneescolaire" optionLabel="code" [showClear]="true"
+                         [style]="{width: 100}"></p-dropdown>
+            <label for="ansc">An-Sc</label>
           </span>
 
         </div>
@@ -152,7 +138,7 @@
         </button>
         <p-button (click)="closeDialog()" [text]="true" class="w-full float-end" label="Cancel"
                   styleClass="w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"></p-button>
-      </form>-->
+      </form>
 
 
     </div>
