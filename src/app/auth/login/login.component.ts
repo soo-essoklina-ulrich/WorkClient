@@ -49,18 +49,14 @@ export class LoginComponent implements OnInit{
 
     //verification de l'utilisateur
     if (this.login.value.username === this.defaultAdmin.username && this.login.value.password === this.defaultAdmin.password) {
-      console.log('Login successful !!!');
       this.route.navigate(['/admin']);
     }else if (this.allUser && this.allUser.length > 0) {
       const user = this.allUser.find(user => user.username === username && user.password === password);
       if (user?.role === 'ENSEIGNANT' ) {
-        console.log('Login successful !!');
         this.route.navigate(['/ens']);
       }else if (user?.role === 'ETUDIANT') {
-        console.log('Login successful !!');
         this.route.navigate(['/etude']);
       }else if (user?.role === 'ADMIN') {
-        console.log('Login successful !!');
         this.route.navigate(['/admin']);
       }else {
         console.log('Login failed !! user not exist');

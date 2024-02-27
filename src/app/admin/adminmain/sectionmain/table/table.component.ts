@@ -1,8 +1,5 @@
-import { Component } from '@angular/core';
-import {FormulaireService} from "../../../../service/form/formulaire.service";
+import {Component} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
-import {FormGroup} from "@angular/forms";
-import {choice} from "../../../../interface/allinterface";
 
 @Component({
   selector: 'app-table',

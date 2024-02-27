@@ -8,6 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DropdownModule} from "primeng/dropdown";
 import {RadioButtonModule} from "primeng/radiobutton";
+import {PasswordModule} from "primeng/password";
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {RadioButtonModule} from "primeng/radiobutton";
         ReactiveFormsModule,
         DropdownModule,
         RadioButtonModule,
+        PasswordModule,
     ]
 })
 export class AuthModule { }

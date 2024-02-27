@@ -150,4 +150,10 @@ export class FormulaireService {
     })
   }
 
+  buildTODOForm(){
+    return this.fb.group({
+      todo:           ['', Validators.required],
+    })
+  }
+
 }

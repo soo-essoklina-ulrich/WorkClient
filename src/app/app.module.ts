@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {WeatherService} from "./service/weather/weather.service";
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HttpClientModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [ WeatherService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

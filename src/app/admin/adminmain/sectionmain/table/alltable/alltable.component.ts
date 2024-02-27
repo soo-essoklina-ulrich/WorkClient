@@ -4,7 +4,7 @@ import {FormGroup} from "@angular/forms";
 import {UserService} from "../../../../../service/user/user.service";
 import {FormulaireService} from "../../../../../service/form/formulaire.service";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {choice, Column} from "../../../../../interface/allinterface";
+import {Column} from "../../../../../interface/allinterface";
 
 
 
@@ -24,11 +24,6 @@ export class AlltableComponent implements OnInit{
 
   user!: UserDetails | undefined;
 
-  optionsDeChoix: choice[] = [
-    {role:'ADMIN'},
-    {role:'ENSEIGNANT'},
-    {role:'ETUDIANT'}
-  ];
 
   cols!: Column[];
 

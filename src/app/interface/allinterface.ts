@@ -5,3 +5,10 @@ export interface Column {
 export interface choice {
   role: string;
 }
+
+export interface TodoItem {
+  id: number ;
+  todo: string;
+  completed: boolean;
+
+}

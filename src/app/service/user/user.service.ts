@@ -24,4 +24,12 @@ export class UserService {
   updateUser(id:number, user: UserDetails): Observable<UserDetails>{
     return this.http.put<UserDetails>(`${this.userUrl}/update/${id}`, user)
   }
+
+  deleteUser(id:number): Observable<UserDetails>{
+    return this.http.delete<UserDetails>(`${this.userUrl}/delete/${id}`)
+  }
+
+  countUser(): Observable<number>{
+    return this.http.get<number>(`${this.userUrl}/count`)
+  }
 }

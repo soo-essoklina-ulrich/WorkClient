@@ -1,6 +1,6 @@
 <div class="container">
 
-  <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+  <section class="section register min-vh-50 d-flex flex-column align-items-center justify-content-center py-4">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
@@ -21,7 +21,7 @@
                 <p class="text-center small">Enter your username & password to login</p>
               </div>
 
-              <form (ngSubmit)="Submit()" [formGroup]="login" class="row g-3 needs-validation" novalidate>
+              <form (ngSubmit)="Submit()" [formGroup]="login" class="row g-4 needs-validation">
 
                 <div class="col-12">
                   <label for="yourUsername" class="form-label">Username</label>
@@ -32,9 +32,14 @@
                   </div>
                 </div>
 
-                <div class="col-12">
-                  <label for="yourPassword" class="form-label">Password</label>
-                  <input type="password" formControlName="password" class="form-control" id="yourPassword" required>
+                <div class="  flex justify-content-center">
+<!--                  <label for="yourPassword" class="form-label">Password</label>-->
+<!--                  <input type="current-password" formControlName="password"   required>-->
+                  <span class="p-float-label">
+                    <p-password formControlName="password"   [feedback]="true" [toggleMask]="true"></p-password>
+                  <label for="password">Password</label>
+                  </span>
+
                   <div class="invalid-feedback">Please enter your password!</div>
                 </div>
 
