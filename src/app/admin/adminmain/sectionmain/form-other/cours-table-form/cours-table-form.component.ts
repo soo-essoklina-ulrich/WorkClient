@@ -152,6 +152,7 @@ export class CoursTableFormComponent implements OnInit{
   }
 
   submitFormCreate() {
+    console.log(this.form.value)
     this.courservice.addCours(this.form.value).subscribe(
       (response)=>{
 
